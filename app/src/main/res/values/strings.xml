@@ -1,4 +1,4 @@
 <resources>
     <string name="app_name">my_music</string>
-    <string name="copyright">早睡</string>
+    <string name="copyright">Copyright © %1$d hpl. All Rights Reserved</string>
 </resources>
