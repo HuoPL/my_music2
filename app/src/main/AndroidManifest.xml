@@ -12,6 +12,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.My_music"
         tools:targetApi="31">
+        <!--启动界面-->
+        <activity
+            android:name=".component.splash.activity.SplashActivity"
+            android:exported="false" />
+        <!--/启动界面-->
         <activity
             android:name=".MainActivity"
             android:exported="true">
