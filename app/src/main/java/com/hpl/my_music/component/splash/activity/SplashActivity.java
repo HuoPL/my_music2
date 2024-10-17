@@ -1,6 +1,7 @@
 package com.hpl.my_music.component.splash.activity;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -11,6 +12,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.hpl.my_music.R;
 import com.hpl.my_music.activity.BaseLogicActivity;
+import com.hpl.my_music.component.splash.fragment.TermServiceDialogFragment;
 import com.hpl.my_music.util.SuperDateUtil;
 import com.qmuiteam.qmui.util.QMUIStatusBarHelper;
 import com.qmuiteam.qmui.util.QMUIWindowInsetHelper;
@@ -57,5 +59,13 @@ public class SplashActivity extends BaseLogicActivity {
         int year= SuperDateUtil.currentYear();
         copyrightView.setText(getResources().getString(R.string.copyright,year));
 
+    }
+    private void showTermsServiceAgreementDialog(){
+        TermServiceDialogFragment.show(getSupportFragmentManager(),new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
     }
 }
