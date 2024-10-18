@@ -31,6 +31,8 @@ public class TermServiceDialogFragment extends BaseDialogFragment {
     @Override
     protected void initViews() {
         super.initViews();
+        setCancelable(false);//这行代码 的作用是点击弹窗外面不能关闭
+
         contentView=findViewById(R.id.content);
         primaryView=findViewById(R.id.primary);
         disagreeView=findViewById(R.id.disagree);
