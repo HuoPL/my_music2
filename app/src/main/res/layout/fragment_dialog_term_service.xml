@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="@dimen/padding_large"
     android:orientation="vertical">
     <!--这里是标题-->
@@ -14,7 +15,7 @@
         android:layout_height="wrap_content"
         android:text="@string/term_service_privacy"
         />
-    //这里是滚动组件
+    <!--滚动组件显示内容-->
 
     <ScrollView
         android:layout_width="match_parent"
@@ -29,6 +30,28 @@
             android:text="@string/term_service_privacy_content"
             android:textSize="@dimen/text_meddle"/>
     </ScrollView>
+    <!--这个是同意按钮-->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/primary"
+        android:text="@string/agree"
+        android:layout_marginTop="@dimen/padding_large"
+        android:backgroundTint="@color/primary"
+        app:cornerRadius="@dimen/d26"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/super_button_height"/>
+    <!--这个是不同意的按钮-->
+    <Button
+        android:id="@+id/disagree"
+        android:textSize="@dimen/text_small"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="?android:attr/borderlessButtonStyle"
+        android:text="@string/disagree"
+        android:layout_marginTop="@dimen/padding_meddle"
+        android:background="@color/transparent"
+        android:textColor="@color/black80"
+        />
+
 
 
 </LinearLayout>

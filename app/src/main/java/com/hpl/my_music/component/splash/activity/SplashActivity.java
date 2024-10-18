@@ -58,6 +58,7 @@ public class SplashActivity extends BaseLogicActivity {
         //获取年份
         int year= SuperDateUtil.currentYear();
         copyrightView.setText(getResources().getString(R.string.copyright,year));
+        showTermsServiceAgreementDialog();
 
     }
     private void showTermsServiceAgreementDialog(){

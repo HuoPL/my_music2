@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
@@ -65,5 +66,16 @@ public abstract class BaseDialogFragment extends DialogFragment {
         initViews();
         initDatum();
         initListeners();
+    }
+
+    /**
+     * 这里是因为fragment不能直接调用findvviewbuid，所以给他封装一个方法来用。
+     * 这里使用泛型就是为了适应 返回任何样式的view，泛型继承view 也是对T进行了一些限制
+     * @param id
+     * @return
+     * @param <T>
+     */
+    public <T extends View> T findViewById(@IdRes int id){
+        return getView().findViewById(id);
     }
 }
