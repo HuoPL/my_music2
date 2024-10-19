@@ -1,6 +1,7 @@
 package com.hpl.my_music.component.splash.activity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -19,6 +20,7 @@ import com.qmuiteam.qmui.util.QMUIWindowInsetHelper;
 
 public class SplashActivity extends BaseLogicActivity {
 
+    private static final String TAG = "cweshi";
     private TextView copyrightView;
 
     /**
@@ -65,8 +67,13 @@ public class SplashActivity extends BaseLogicActivity {
         TermServiceDialogFragment.show(getSupportFragmentManager(),new View.OnClickListener(){
             @Override
             public void onClick(View v) {
+                prepareNext();
 
             }
         });
+    }
+
+    private void prepareNext() {
+        Log.d(TAG, "prepareNext: ");
     }
 }

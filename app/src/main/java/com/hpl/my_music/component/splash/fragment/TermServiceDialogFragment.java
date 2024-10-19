@@ -17,6 +17,7 @@ import com.google.android.material.button.MaterialButton;
 import com.hpl.my_music.R;
 import com.hpl.my_music.fragment.BaseDialogFragment;
 import com.hpl.my_music.util.SuperTextUtil;
+import com.hpl.superui.process.SuperProcessUtil;
 
 /**
  * 服务条款和隐私协议的对话框
@@ -26,6 +27,7 @@ public class TermServiceDialogFragment extends BaseDialogFragment {
     private TextView contentView;
     private MaterialButton primaryView;
     private Button disagreeView;
+    private View.OnClickListener onAgreeClickListener;
 
 
     @Override
@@ -55,6 +57,33 @@ public class TermServiceDialogFragment extends BaseDialogFragment {
 
     }
 
+    @Override
+    protected void initListeners() {
+        super.initListeners();
+        primaryView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dismiss();
+                //把这个弹窗关闭后。要把事件回调到外借
+                //这里是调用fragment的监听器，当点击的时候，就对到外借
+                onAgreeClickListener.onClick(v);
+                //这理是吧控制权给了外界控制器
+
+
+
+            }
+        });
+        //这里就是一个很经典的监听回调
+        disagreeView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dismiss();
+                SuperProcessUtil.killApp();
+
+            }
+        });
+    }
+
     public static TermServiceDialogFragment newInstance() {
 
         Bundle args = new Bundle();
@@ -71,6 +100,7 @@ public class TermServiceDialogFragment extends BaseDialogFragment {
      */
     public static void show(FragmentManager fragmentManager, View.OnClickListener onAgreeClickListener) {
         TermServiceDialogFragment fragment= newInstance();
+        fragment.onAgreeClickListener=onAgreeClickListener;//这里是吧那个监听器保存下来
         fragment.show(fragmentManager,"TermServiceDialogFragment");
     }
 
