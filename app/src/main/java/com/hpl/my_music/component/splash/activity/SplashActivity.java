@@ -14,6 +14,7 @@ import androidx.core.view.WindowInsetsCompat;
 import com.hpl.my_music.R;
 import com.hpl.my_music.activity.BaseLogicActivity;
 import com.hpl.my_music.component.splash.fragment.TermServiceDialogFragment;
+import com.hpl.my_music.util.DefaultPreferenceUtil;
 import com.hpl.my_music.util.SuperDateUtil;
 import com.qmuiteam.qmui.util.QMUIStatusBarHelper;
 import com.qmuiteam.qmui.util.QMUIWindowInsetHelper;
@@ -60,13 +61,22 @@ public class SplashActivity extends BaseLogicActivity {
         //获取年份
         int year= SuperDateUtil.currentYear();
         copyrightView.setText(getResources().getString(R.string.copyright,year));
-        showTermsServiceAgreementDialog();
+        if(DefaultPreferenceUtil.getInstance(getHostActivity()).isAcceptTermsServiceAgreement()){
+            //走到这里其实就是已经同意了
+            prepareNext();
+
+        }else {
+            showTermsServiceAgreementDialog();
+        }
+//        showTermsServiceAgreementDialog();
+        //这里最开始忘记注释掉了  就导致 点击了统一还是显示了出来
 
     }
     private void showTermsServiceAgreementDialog(){
         TermServiceDialogFragment.show(getSupportFragmentManager(),new View.OnClickListener(){
             @Override
             public void onClick(View v) {
+                DefaultPreferenceUtil.getInstance(getHostActivity()).setAcceptTermsServiceAgreement();;
                 prepareNext();
 
             }

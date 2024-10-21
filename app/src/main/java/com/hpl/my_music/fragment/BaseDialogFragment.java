@@ -10,6 +10,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
+import com.hpl.my_music.activity.BaseCommonActivity;
+
 /**
  * 所有的dialogfragment对话框的父类
  */
@@ -77,5 +79,13 @@ public abstract class BaseDialogFragment extends DialogFragment {
      */
     public <T extends View> T findViewById(@IdRes int id){
         return getView().findViewById(id);
+    }
+    /**
+     * 获取界面方法
+     *
+     * @return
+     */
+    protected BaseCommonActivity getHostActivity() {
+        return (BaseCommonActivity) getActivity();
     }
 }
