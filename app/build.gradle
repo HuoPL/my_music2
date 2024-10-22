@@ -41,6 +41,7 @@ dependencies {
     implementation libs.activity
     //这个是官
     implementation libs.constraintlayout
+    implementation libs.viewbinding
     testImplementation libs.junit//这个是测试java带代码的
     androidTestImplementation libs.ext.junit//这是测试安卓的
     androidTestImplementation libs.espresso.core//这个也是测安卓的
