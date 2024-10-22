@@ -15,18 +15,20 @@ import androidx.fragment.app.FragmentManager;
 
 import com.google.android.material.button.MaterialButton;
 import com.hpl.my_music.R;
+import com.hpl.my_music.databinding.FragmentDialogTermServiceBinding;
 import com.hpl.my_music.fragment.BaseDialogFragment;
+import com.hpl.my_music.fragment.BaseViewModelDialogFragment;
 import com.hpl.my_music.util.SuperTextUtil;
 import com.hpl.superui.process.SuperProcessUtil;
 
 /**
  * 服务条款和隐私协议的对话框
  */
-public class TermServiceDialogFragment extends BaseDialogFragment {
+public class TermServiceDialogFragment extends BaseViewModelDialogFragment<FragmentDialogTermServiceBinding> {
     private static final String TAG="TermServiceDialogFragment";
-    private TextView contentView;
-    private MaterialButton primaryView;
-    private Button disagreeView;
+//    private TextView contentView;
+//    private MaterialButton primaryView;
+//    private Button disagreeView;
     private View.OnClickListener onAgreeClickListener;
 
 
@@ -35,10 +37,11 @@ public class TermServiceDialogFragment extends BaseDialogFragment {
         super.initViews();
         setCancelable(false);//这行代码 的作用是点击弹窗外面不能关闭
 
-        contentView=findViewById(R.id.content);
-        primaryView=findViewById(R.id.primary);
-        disagreeView=findViewById(R.id.disagree);
-        SuperTextUtil.setLinkColor(contentView,getActivity().getColor(R.color.link));
+
+//        contentView=findViewById(R.id.content);因为使用了viewbingding 所以直接就把最初始的方法删掉就行
+//        primaryView=findViewById(R.id.primary);
+//        disagreeView=findViewById(R.id.disagree);
+        SuperTextUtil.setLinkColor(binding.content,getActivity().getColor(R.color.link));
     }
 
     @Override
@@ -53,14 +56,14 @@ public class TermServiceDialogFragment extends BaseDialogFragment {
 
             }
         });
-        contentView.setText(result);
+        binding.content.setText(result);
 
     }
 
     @Override
     protected void initListeners() {
         super.initListeners();
-        primaryView.setOnClickListener(new View.OnClickListener() {
+        binding.primary.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 dismiss();
@@ -74,7 +77,7 @@ public class TermServiceDialogFragment extends BaseDialogFragment {
             }
         });
         //这里就是一个很经典的监听回调
-        disagreeView.setOnClickListener(new View.OnClickListener() {
+        binding.disagree.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 dismiss();

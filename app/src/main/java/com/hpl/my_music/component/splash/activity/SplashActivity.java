@@ -15,6 +15,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.hpl.my_music.R;
 import com.hpl.my_music.activity.BaseLogicActivity;
+import com.hpl.my_music.activity.BaseViewModelActivity;
 import com.hpl.my_music.component.splash.fragment.TermServiceDialogFragment;
 import com.hpl.my_music.databinding.ActivitySplashBinding;
 import com.hpl.my_music.util.DefaultPreferenceUtil;
@@ -25,11 +26,11 @@ import com.permissionx.guolindev.PermissionX;
 import com.permissionx.guolindev.request.PermissionBuilder;
 //import com.hpl.my_music.activity.BaseViewModelActivity;
 
-public class SplashActivity extends BaseLogicActivity {
+public class SplashActivity extends BaseViewModelActivity <ActivitySplashBinding>{
 
     private static final String TAG = "SplashActivity";
     private TextView copyrightView;
-    private ActivitySplashBinding binding;
+//    private ActivitySplashBinding binding;
 
     /**
      * 这里启动界面
@@ -38,15 +39,16 @@ public class SplashActivity extends BaseLogicActivity {
      *     recently supplied in {@link #onSaveInstanceState}.  <b><i>Note: Otherwise it is null.</i></b>
      *
      */
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        binding=ActivitySplashBinding.inflate(getLayoutInflater());
-
-        setContentView(binding.getRoot());
-
-
-    }
+    //这里的oncreate方法之所以可以删掉是因为父类里面已经设置好了
+//    @Override
+//    protected void onCreate(Bundle savedInstanceState) {
+//        super.onCreate(savedInstanceState);
+//        binding=ActivitySplashBinding.inflate(getLayoutInflater());
+//
+//        setContentView(binding.getRoot());
+//
+//
+//    }
 
     @Override
     protected void initViews() {
