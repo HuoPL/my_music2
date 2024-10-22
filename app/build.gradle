@@ -26,6 +26,11 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    viewBinding {
+        //开启视图绑定，用来替代findViewById
+        //官方文档：https://developer.android.com/topic/libraries/view-binding
+        enabled = true
+    }
 }
 
 dependencies {
@@ -44,4 +49,8 @@ dependencies {
     implementation 'com.qmuiteam:qmui:2.0.1'
     //时间插件
     implementation 'joda-time:joda-time:2.10.10'
+
+    //权限框架
+    //https://github.com/guolindev/PermissionX
+    implementation 'com.guolindev.permissionx:permissionx:1.7.1'
 }
