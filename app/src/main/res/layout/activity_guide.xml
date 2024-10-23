@@ -1,14 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        tools:layout_editor_absoluteX="224dp"
-        tools:layout_editor_absoluteY="246dp" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <include layout="@layout/fill"/>
+
+            <com.google.android.material.button.MaterialButton
+            android:id="@+id/login_or_register"
+            android:text="@string/login_or_register"
+            style="@style/SuperButton.Primary"
+            android:minWidth="@dimen/d130"
+            android:layout_width="wrap_content"
+             />
+        <include layout="@layout/fill"/>
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/experience_now"
+
+                style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/d55"
+                android:layout_centerVertical="true"
+                android:layout_marginHorizontal="@dimen/d5"
+                android:layout_toRightOf="@+id/select_image"
+                android:backgroundTint="?attr/colorLightWhite"
+                android:minWidth="@dimen/button_width_large"
+                android:text="@string/experience_now"
+                android:textColor="@color/black80"
+                android:textSize="@dimen/text_small"
+                tools:strokeColor="?attr/colorPrimary"
+                tools:strokeWidth="@dimen/d1" />
+        <include layout="@layout/fill"/>
+
+
+
+
+    </LinearLayout>
+
+    
+
+</LinearLayout>

@@ -26,9 +26,9 @@ public class BaseViewModelActivity<VB extends ViewBinding> extends BaseLogicActi
         binding = ReflectUtil.newViewBinding(getLayoutInflater(), this.getClass());
         setContentView(binding.getRoot());
     }
-    protected void startActivityAfterFinishThis(Class<GuideActivity> clazz){
+    protected void startActivityAfterFinishThis(Class<?> clazz){
         //这是一个常用通用逻辑  启动新界面  然后关闭上一个界面
-        Intent intent = new Intent(this, GuideActivity.class);
+        Intent intent = new Intent(this, clazz);
         startActivity(intent);
         //启动后不希望回到最开始的界面了  所以直接就调用finish
         finish();//在哪个界面调用finish  就关闭哪个界面了

@@ -4,5 +4,8 @@
         <item name="android:colorBackground">@color/black17</item>
         <!-- Customize your dark theme here. -->
         <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+
+        <item name="colorLightWhite">@color/black183</item>
+
     </style>
 </resources>

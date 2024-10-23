@@ -3,11 +3,27 @@
     <style name="SuperUI.NoActionBar" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!--这里是控制的背景颜色-->
         <item name="android:colorBackground">@color/black183</item>
-        <!--这里控制的是主色调-->
+        <!--这里控制的是主色调,也就是按钮的默认填充颜色-->
         <item name="colorPrimary">@color/primary</item>
 <!--这里是把主题的整体色调，成红色了       -->
+
+        <item name="colorLightWhite">@color/white</item>
         <!-- Customize your light theme here. -->
 <!--         <item name="colorPrimary">@color/my_light_primary</item> -->
+    </style>
+
+
+    <!--按钮-->
+    <style name="SuperButton">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/super_button_height</item>
+    </style>
+
+
+    <!--主色调按钮-->
+<!--    这里的这个点 表示的是继承的关系-->
+    <style name="SuperButton.Primary">
+        <item name="android:textColor">@color/white</item>
     </style>
 
 <!--    <style name="Theme.My_music" parent="Base.Theme.My_music" />-->
