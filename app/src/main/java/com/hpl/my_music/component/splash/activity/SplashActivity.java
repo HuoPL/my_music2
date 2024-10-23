@@ -3,19 +3,10 @@ package com.hpl.my_music.component.splash.activity;
 import android.Manifest;
 import android.content.Intent;
 import android.os.Build;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.TextView;
-
-import androidx.activity.EdgeToEdge;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.hpl.my_music.R;
-import com.hpl.my_music.activity.BaseLogicActivity;
 import com.hpl.my_music.activity.BaseViewModelActivity;
 import com.hpl.my_music.component.guide.activity.GuideActivity;
 import com.hpl.my_music.component.splash.fragment.TermServiceDialogFragment;
@@ -23,7 +14,6 @@ import com.hpl.my_music.databinding.ActivitySplashBinding;
 import com.hpl.my_music.util.DefaultPreferenceUtil;
 import com.hpl.my_music.util.SuperDateUtil;
 import com.qmuiteam.qmui.util.QMUIStatusBarHelper;
-import com.qmuiteam.qmui.util.QMUIWindowInsetHelper;
 import com.permissionx.guolindev.PermissionX;
 import com.permissionx.guolindev.request.PermissionBuilder;
 //import com.hpl.my_music.activity.BaseViewModelActivity;
@@ -160,9 +150,8 @@ public class SplashActivity extends BaseViewModelActivity <ActivitySplashBinding
 
     private void prepareNext() {
         Log.d(TAG, "prepareNext: ");
-        Intent intent = new Intent(this, GuideActivity.class);
-        startActivity(intent);
-        //启动后不希望回到最开始的界面了  所以直接就调用finish
-        finish();//在哪个界面调用finish  就关闭哪个界面了
+        startActivityAfterFinishThis(GuideActivity.class);
+
     }
+
 }
