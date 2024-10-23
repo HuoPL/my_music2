@@ -30,6 +30,24 @@ public class TermServiceDialogFragment extends BaseViewModelDialogFragment<Fragm
 //    private MaterialButton primaryView;
 //    private Button disagreeView;
     private View.OnClickListener onAgreeClickListener;
+    public static TermServiceDialogFragment newInstance() {
+
+        Bundle args = new Bundle();
+
+        TermServiceDialogFragment fragment = new TermServiceDialogFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
+    /**
+     * 显示对话框
+     * @param fragmentManager
+     * @param onAgreeClickListener 同意按钮点击对调
+     */
+    public static void show(FragmentManager fragmentManager, View.OnClickListener onAgreeClickListener) {
+        TermServiceDialogFragment fragment= newInstance();
+        fragment.onAgreeClickListener=onAgreeClickListener;//这里是吧那个监听器保存下来
+        fragment.show(fragmentManager,"TermServiceDialogFragment");
+    }
 
 
     @Override
@@ -38,7 +56,7 @@ public class TermServiceDialogFragment extends BaseViewModelDialogFragment<Fragm
         setCancelable(false);//这行代码 的作用是点击弹窗外面不能关闭
 
 
-//        contentView=findViewById(R.id.content);因为使用了viewbingding 所以直接就把最初始的方法删掉就行
+//        contentView=findViewById(R.id.content);
 //        primaryView=findViewById(R.id.primary);
 //        disagreeView=findViewById(R.id.disagree);
         SuperTextUtil.setLinkColor(binding.content,getActivity().getColor(R.color.link));
@@ -48,6 +66,8 @@ public class TermServiceDialogFragment extends BaseViewModelDialogFragment<Fragm
     protected void initDatum() {
         super.initDatum();
         Spanned content =Html.fromHtml(getString(R.string.term_service_privacy_content));
+//        Spanned content = Html.fromHtml(getString(R.string.term_service_privacy_content), Html.FROM_HTML_MODE_LEGACY);
+
         //这里是对获取到到的html进行一个简单的处理
         SpannableStringBuilder result=SuperTextUtil.setHtmlLinkClick(content, new SuperTextUtil.OnLinkClickListener() {
             @Override
@@ -77,7 +97,7 @@ public class TermServiceDialogFragment extends BaseViewModelDialogFragment<Fragm
             }
         });
         //这里就是一个很经典的监听回调
-        binding.disagree.setOnClickListener(new View.OnClickListener() {
+       binding.disagree.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 dismiss();
@@ -87,28 +107,13 @@ public class TermServiceDialogFragment extends BaseViewModelDialogFragment<Fragm
         });
     }
 
-    public static TermServiceDialogFragment newInstance() {
 
-        Bundle args = new Bundle();
 
-        TermServiceDialogFragment fragment = new TermServiceDialogFragment();
-        fragment.setArguments(args);
-        return fragment;
-    }
 
-    /**
-     * 显示对话框
-     * @param fragmentManager
-     * @param onAgreeClickListener 同意按钮点击对调
-     */
-    public static void show(FragmentManager fragmentManager, View.OnClickListener onAgreeClickListener) {
-        TermServiceDialogFragment fragment= newInstance();
-        fragment.onAgreeClickListener=onAgreeClickListener;//这里是吧那个监听器保存下来
-        fragment.show(fragmentManager,"TermServiceDialogFragment");
-    }
+//这里是罪魁祸首，这个方法本来是在父类里面写过的  但是这里忘记修改了  还是接着了
 
-    @Override
-    protected View getLayoutView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_dialog_term_service,container,false);
-    }
+//    @Override
+//    protected View getLayoutView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+//        return inflater.inflate(R.layout.fragment_dialog_term_service,container,false);
+//    }
 }

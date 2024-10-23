@@ -29,16 +29,16 @@ import com.permissionx.guolindev.request.PermissionBuilder;
 public class SplashActivity extends BaseViewModelActivity <ActivitySplashBinding>{
 
     private static final String TAG = "SplashActivity";
-    private TextView copyrightView;
+//    private TextView copyrightView;
 //    private ActivitySplashBinding binding;
 
-    /**
-     * 这里启动界面
-     * @param savedInstanceState If the activity is being re-initialized after
-     *     previously being shut down then this Bundle contains the data it most
-     *     recently supplied in {@link #onSaveInstanceState}.  <b><i>Note: Otherwise it is null.</i></b>
-     *
-     */
+//    /**
+//     * 这里启动界面
+//     * @param savedInstanceState If the activity is being re-initialized after
+//     *     previously being shut down then this Bundle contains the data it most
+//     *     recently supplied in {@link #onSaveInstanceState}.  <b><i>Note: Otherwise it is null.</i></b>
+//     *
+//     */
     //这里的oncreate方法之所以可以删掉是因为父类里面已经设置好了
 //    @Override
 //    protected void onCreate(Bundle savedInstanceState) {
