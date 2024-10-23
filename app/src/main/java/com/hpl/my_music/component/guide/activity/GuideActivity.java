@@ -7,6 +7,7 @@ import com.hpl.my_music.MainActivity;
 import com.hpl.my_music.R;
 import com.hpl.my_music.activity.BaseViewModelActivity;
 import com.hpl.my_music.databinding.ActivityGuideBinding;
+import com.hpl.my_music.util.PreferenceUtil;
 import com.qmuiteam.qmui.util.QMUIStatusBarHelper;
 
 /**
@@ -57,6 +58,7 @@ public class GuideActivity extends BaseViewModelActivity<ActivityGuideBinding>im
 
     }
     private void setShowGuide(){
+        sp.setShowGuide(false);
 
     }
 }

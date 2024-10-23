@@ -1,17 +1,22 @@
 package com.hpl.my_music.component.splash.activity;
 
+import static java.time.temporal.TemporalAdjusters.next;
+
 import android.Manifest;
 import android.content.Intent;
 import android.os.Build;
 import android.util.Log;
 import android.view.View;
 
+import com.hpl.my_music.MainActivity;
 import com.hpl.my_music.R;
 import com.hpl.my_music.activity.BaseViewModelActivity;
 import com.hpl.my_music.component.guide.activity.GuideActivity;
 import com.hpl.my_music.component.splash.fragment.TermServiceDialogFragment;
+import com.hpl.my_music.config.Config;
 import com.hpl.my_music.databinding.ActivitySplashBinding;
 import com.hpl.my_music.util.DefaultPreferenceUtil;
+import com.hpl.my_music.util.PreferenceUtil;
 import com.hpl.my_music.util.SuperDateUtil;
 import com.qmuiteam.qmui.util.QMUIStatusBarHelper;
 import com.permissionx.guolindev.PermissionX;
@@ -150,8 +155,33 @@ public class SplashActivity extends BaseViewModelActivity <ActivitySplashBinding
 
     private void prepareNext() {
         Log.d(TAG, "prepareNext: ");
-        startActivityAfterFinishThis(GuideActivity.class);
+        if (sp.isShowGuide()){
+            startActivityAfterFinishThis(GuideActivity.class);
 
+
+
+        }else {
+            postNext();
+        }
+
+
+
+
+    }
+    private void postNext() {
+        binding.copyright.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                next();
+            }
+        }, Config.SPLASH_DEFAULT_DELAY_TIME);
+
+
+
+    }
+
+    private void next() {
+        startActivityAfterFinishThis(MainActivity.class);
     }
 
 }
