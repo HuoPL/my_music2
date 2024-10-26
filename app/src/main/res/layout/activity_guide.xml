@@ -4,9 +4,26 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+    <!--左右滚动控件-->
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/list"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <!--指示器-->
+    <me.relex.circleindicator.CircleIndicator
+        android:id="@+id/indicator"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/guide_indicator_height"
+        xmlns:ci_drawable="@drawable/shape_color_primary"
+        xmlns:ci_drawable_unselected="@drawable/shape_circle_light_grey" />
+
+
 
     <LinearLayout
         android:orientation="horizontal"
+        android:layout_marginBottom="@dimen/d30"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <include layout="@layout/fill"/>
