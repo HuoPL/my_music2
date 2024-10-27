@@ -16,8 +16,9 @@
         android:id="@+id/indicator"
         android:layout_width="match_parent"
         android:layout_height="@dimen/guide_indicator_height"
-        xmlns:ci_drawable="@drawable/shape_color_primary"
-        xmlns:ci_drawable_unselected="@drawable/shape_circle_light_grey" />
+
+        tools:ci_drawable="@drawable/shape_color_primary"
+        tools:ci_drawable_unselected="@drawable/shape_circle_light_grey" />
 
 
 

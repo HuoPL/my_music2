@@ -28,6 +28,12 @@ public class GuideActivity extends BaseViewModelActivity<ActivityGuideBinding>im
 
         //设置适配器到控件
         binding.list.setAdapter(adapter);
+
+        //让指示器根据列表控件配合工作
+        binding.indicator.setViewPager(binding.list);
+
+        //适配器注册数据源观察者
+        adapter.registerDataSetObserver(binding.indicator.getDataSetObserver());
         //准备数据
         List<Integer> datum = new ArrayList<>();
         datum.add(R.drawable.guide1);
@@ -39,18 +45,18 @@ public class GuideActivity extends BaseViewModelActivity<ActivityGuideBinding>im
         //设置数据到适配器
         adapter.setDatum(datum);
     }
-//    protected void initViews() {
-//        super.initViews();
-//        //这里吧实例变量变成类变量的快捷键是ctrl+alt+f
+    protected void initViews() {
+        super.initViews();
+        //这里吧实例变量变成类变量的快捷键是ctrl+alt+f
 //
-////        copyrightView = findViewById(R.id.copyright);
-//        //设置出沉浸式状态栏
-//
-//        QMUIStatusBarHelper.translucent(this);
-////        QMUIWindowInsetHelper.setStatuBarLightMode
-//        QMUIStatusBarHelper.setStatusBarLightMode(this);
-//
-//    }
+//        copyrightView = findViewById(R.id.copyright);
+////        设置出沉浸式状态栏
+
+        QMUIStatusBarHelper.translucent(this);
+//        QMUIWindowInsetHelper.setStatuBarLightMode
+        QMUIStatusBarHelper.setStatusBarLightMode(this);
+
+    }
 
         @Override
 
