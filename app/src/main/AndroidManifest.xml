@@ -49,6 +49,14 @@
             android:exported="false">
 
         </activity>
+
+        <!--这里是登录界面-->
+        <activity
+            android:name=".component.login.activity.LoginHomeActivity"
+            android:exported="false">
+
+        </activity>
+
     </application>
 
 </manifest>

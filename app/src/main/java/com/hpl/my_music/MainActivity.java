@@ -8,19 +8,25 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-public class MainActivity extends AppCompatActivity {
+import com.hpl.my_music.activity.BaseViewModelActivity;
+import com.hpl.my_music.component.login.activity.LoginHomeActivity;
+import com.hpl.my_music.databinding.ActivityMainBinding;
+import com.hpl.my_music.util.Constant;
+
+public class MainActivity extends BaseViewModelActivity <ActivityMainBinding> {
+
+    @Override
+    protected void initDatum() {
+        super.initDatum();
+        String action = getIntent().getAction();
+        if (Constant.ACTION_LOGIN.equals(action)) {
+            //跳转到启动界面
+            startActivity(LoginHomeActivity.class);
+        }
+    }
 //这是测
     //折尺测试
     //demo2
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_main);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
-    }
+
+
 }

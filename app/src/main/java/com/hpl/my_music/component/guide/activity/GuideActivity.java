@@ -1,5 +1,6 @@
 package com.hpl.my_music.component.guide.activity;
 
+import android.content.Intent;
 import android.view.View;
 
 
@@ -8,6 +9,7 @@ import com.hpl.my_music.R;
 import com.hpl.my_music.activity.BaseViewModelActivity;
 import com.hpl.my_music.component.guide.adapter.GuideAdapter;
 import com.hpl.my_music.databinding.ActivityGuideBinding;
+import com.hpl.my_music.util.Constant;
 import com.hpl.my_music.util.PreferenceUtil;
 import com.qmuiteam.qmui.util.QMUIStatusBarHelper;
 
@@ -24,7 +26,7 @@ public class GuideActivity extends BaseViewModelActivity<ActivityGuideBinding>im
     protected void initDatum() {
         super.initDatum();
         //创建适配器
-        adapter = new GuideAdapter(getSupportFragmentManager());
+        adapter = new GuideAdapter(getHostActivity(), getSupportFragmentManager());
 
         //设置适配器到控件
         binding.list.setAdapter(adapter);
@@ -72,7 +74,12 @@ public class GuideActivity extends BaseViewModelActivity<ActivityGuideBinding>im
         public void onClick (View v){
             switch (v.getId()) {
                 case R.id.login_or_register:
+                    Intent intent=new Intent(getHostActivity(), MainActivity.class);
+                    intent.setAction(Constant.ACTION_LOGIN);
+                    startActivity(intent);
+
                     setShowGuide();
+                    finish();
                     break;
 
                 case R.id.experience_now:
@@ -87,7 +94,7 @@ public class GuideActivity extends BaseViewModelActivity<ActivityGuideBinding>im
 
         }
         private void setShowGuide () {
-            sp.setShowGuide(false);
+//            sp.setShowGuide(false);
 
         }
     }
