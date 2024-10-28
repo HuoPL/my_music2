@@ -1,5 +1,7 @@
 package com.hpl.my_music.config;
 
+import com.hpl.my_music.BuildConfig;
+
 /**
  * 配置文件
  * <p>
@@ -10,4 +12,15 @@ public class Config {
      * 默认延时时间
      */
     public static final long SPLASH_DEFAULT_DELAY_TIME = 1000;
+
+
+    /**
+     * 端点
+     */
+    public static String ENDPOINT = BuildConfig.ENDPOINT;
+
+    /**
+     * 资源端点
+     */
+    public static String RESOURCE_ENDPOINT = BuildConfig.RESOURCE_ENDPOINT;
 }

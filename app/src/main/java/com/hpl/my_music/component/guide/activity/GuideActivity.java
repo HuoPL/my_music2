@@ -1,20 +1,31 @@
 package com.hpl.my_music.component.guide.activity;
 
 import android.content.Intent;
+import android.util.Log;
 import android.view.View;
 
+
+import androidx.annotation.NonNull;
 
 import com.hpl.my_music.MainActivity;
 import com.hpl.my_music.R;
 import com.hpl.my_music.activity.BaseViewModelActivity;
 import com.hpl.my_music.component.guide.adapter.GuideAdapter;
+import com.hpl.my_music.config.Config;
 import com.hpl.my_music.databinding.ActivityGuideBinding;
 import com.hpl.my_music.util.Constant;
 import com.hpl.my_music.util.PreferenceUtil;
 import com.qmuiteam.qmui.util.QMUIStatusBarHelper;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 /**
  * 左右滚动的引导界面
@@ -22,6 +33,7 @@ import java.util.List;
  * https://github.com/bingoogolapple/BGABanner-Android
  */
 public class GuideActivity extends BaseViewModelActivity<ActivityGuideBinding>implements View.OnClickListener {
+    private static final String TAG = "GuideActivity";
     private GuideAdapter adapter;
     protected void initDatum() {
         super.initDatum();
@@ -83,8 +95,11 @@ public class GuideActivity extends BaseViewModelActivity<ActivityGuideBinding>im
                     break;
 
                 case R.id.experience_now:
-                    startActivityAfterFinishThis(MainActivity.class);
-                    setShowGuide();
+//                    startActivityAfterFinishThis(MainActivity.class);
+//                    setShowGuide();
+
+
+                    testGet();
 
 
                     break;
@@ -93,7 +108,29 @@ public class GuideActivity extends BaseViewModelActivity<ActivityGuideBinding>im
             }
 
         }
-        private void setShowGuide () {
+
+    private void testGet() {
+        OkHttpClient client = new OkHttpClient();
+
+        String url= Config.ENDPOINT+"v1/sheets";
+        Request request =new Request.Builder()
+                .url(url)
+                .build();
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                Log.e(TAG, "get error: " + e.getLocalizedMessage());
+            }
+
+            @Override
+            public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+                Log.d(TAG, "get success: " + response.body().string());
+
+            }
+        });
+    }
+
+    private void setShowGuide () {
 //            sp.setShowGuide(false);
 
         }
