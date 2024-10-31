@@ -17,6 +17,8 @@ import com.hpl.my_music.component.sheet.model.Sheet;
 import com.hpl.my_music.component.sheet.model.SheetWrapper;
 import com.hpl.my_music.config.Config;
 import com.hpl.my_music.databinding.ActivityGuideBinding;
+import com.hpl.my_music.model.response.DetailResponse;
+import com.hpl.my_music.model.response.ListResponse;
 import com.hpl.my_music.util.Constant;
 import com.hpl.my_music.util.PreferenceUtil;
 import com.qmuiteam.qmui.util.QMUIStatusBarHelper;
@@ -133,26 +135,24 @@ public class GuideActivity extends BaseViewModelActivity<ActivityGuideBinding>im
 
 
     private void testRetrofitGet() {
-        service.sheets(null, 2)
-                //这句代码得意思是把请求放在子线程里面
+
+        service.sheetDetail("ixuea", "1")
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<SheetWrapper>() {
+                .subscribe(new Observer<DetailResponse<Sheet>>() {
                     @Override
                     public void onSubscribe(@io.reactivex.rxjava3.annotations.NonNull Disposable d) {
 
                     }
 
                     @Override
-                    public void onNext(@io.reactivex.rxjava3.annotations.NonNull SheetWrapper s) {
-
-                        Sheet sheet = s.getData().getData().get(0);
-                        Log.d(TAG, "onNext: " + sheet.getTitle());
+                    public void onNext(@io.reactivex.rxjava3.annotations.NonNull DetailResponse<Sheet> data) {
+                        Log.d(TAG, "onNext: " + data.getData().getTitle());
                     }
 
                     @Override
                     public void onError(@io.reactivex.rxjava3.annotations.NonNull Throwable e) {
-                        Log.d(TAG, "onError: " + e.getLocalizedMessage());
+                        Log.e(TAG, "onError: " + e.getLocalizedMessage());
                     }
 
                     @Override

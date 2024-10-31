@@ -39,6 +39,8 @@ public class Sheet {
      */
     private int songsCount;
 
+    private String id;
+
     /**
      * 创建时间
      */
@@ -119,5 +121,13 @@ public class Sheet {
 
     public void setUpdatedAt(String updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

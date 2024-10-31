@@ -1,13 +1,11 @@
-package com.hpl.my_music.model;
-
-import com.hpl.my_music.component.sheet.model.Sheet;
+package com.hpl.my_music.model.response;
 
 import java.util.List;
 
 /**
  * 解析列表网络请求
  */
-public class Meta {
+public class Meta<T> {
     /**
      * 有多少条
      */
@@ -33,13 +31,13 @@ public class Meta {
      */
     private Integer next;
 
-    private List<Sheet> data;
+    private List<T> data;
 
-    public List<Sheet> getData() {
+    public List<T> getData() {
         return data;
     }
 
-    public void setData(List<Sheet> data) {
+    public void setData(List<T> data) {
         this.data = data;
     }
 
