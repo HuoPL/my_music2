@@ -10,10 +10,16 @@ import com.tencent.mmkv.MMKV;
  */
 public class AppContext extends Application {
     private static final String TAG = "AppContext";
+    private static AppContext instance;
+
+    public static AppContext getInstance() {
+        return instance;
+    }
 
     @Override
     public void onCreate() {
         super.onCreate();
+        instance = this;
         initMMKV();
     }
 

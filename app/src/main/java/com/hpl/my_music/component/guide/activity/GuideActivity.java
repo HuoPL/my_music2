@@ -10,7 +10,11 @@ import androidx.annotation.NonNull;
 import com.hpl.my_music.MainActivity;
 import com.hpl.my_music.R;
 import com.hpl.my_music.activity.BaseViewModelActivity;
+import com.hpl.my_music.component.api.DefaultService;
+import com.hpl.my_music.component.api.NetworkModule;
 import com.hpl.my_music.component.guide.adapter.GuideAdapter;
+import com.hpl.my_music.component.sheet.model.Sheet;
+import com.hpl.my_music.component.sheet.model.SheetWrapper;
 import com.hpl.my_music.config.Config;
 import com.hpl.my_music.databinding.ActivityGuideBinding;
 import com.hpl.my_music.util.Constant;
@@ -21,11 +25,16 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.core.Observer;
+import io.reactivex.rxjava3.disposables.Disposable;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+import retrofit2.Retrofit;
 
 /**
  * 左右滚动的引导界面
@@ -35,8 +44,18 @@ import okhttp3.Response;
 public class GuideActivity extends BaseViewModelActivity<ActivityGuideBinding>implements View.OnClickListener {
     private static final String TAG = "GuideActivity";
     private GuideAdapter adapter;
+    private DefaultService service;
+
+
+
     protected void initDatum() {
         super.initDatum();
+
+
+
+        OkHttpClient okHttpClient = NetworkModule.provideOkHttpClient();
+        Retrofit retrofit = NetworkModule.provideRetrofit(okHttpClient);
+        service = retrofit.create(DefaultService.class);
         //创建适配器
         adapter = new GuideAdapter(getHostActivity(), getSupportFragmentManager());
 
@@ -99,7 +118,8 @@ public class GuideActivity extends BaseViewModelActivity<ActivityGuideBinding>im
 //                    setShowGuide();
 
 
-                    testGet();
+//                    testGet();
+                    testRetrofitGet();
 
 
                     break;
@@ -109,13 +129,51 @@ public class GuideActivity extends BaseViewModelActivity<ActivityGuideBinding>im
 
         }
 
+
+
+
+    private void testRetrofitGet() {
+        service.sheets(null, 2)
+                //这句代码得意思是把请求放在子线程里面
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<SheetWrapper>() {
+                    @Override
+                    public void onSubscribe(@io.reactivex.rxjava3.annotations.NonNull Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(@io.reactivex.rxjava3.annotations.NonNull SheetWrapper s) {
+
+                        Sheet sheet = s.getData().getData().get(0);
+                        Log.d(TAG, "onNext: " + sheet.getTitle());
+                    }
+
+                    @Override
+                    public void onError(@io.reactivex.rxjava3.annotations.NonNull Throwable e) {
+                        Log.d(TAG, "onError: " + e.getLocalizedMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+    }
+
+    /**
+     * okhttp get请求
+     */
     private void testGet() {
         OkHttpClient client = new OkHttpClient();
 
-        String url= Config.ENDPOINT+"v1/sheets";
-        Request request =new Request.Builder()
+        String url = Config.ENDPOINT + "v1/sheets";
+
+        Request request = new Request.Builder()
                 .url(url)
                 .build();
+
         client.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(@NonNull Call call, @NonNull IOException e) {
@@ -125,10 +183,10 @@ public class GuideActivity extends BaseViewModelActivity<ActivityGuideBinding>im
             @Override
             public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
                 Log.d(TAG, "get success: " + response.body().string());
-
             }
         });
     }
+
 
     private void setShowGuide () {
 //            sp.setShowGuide(false);
