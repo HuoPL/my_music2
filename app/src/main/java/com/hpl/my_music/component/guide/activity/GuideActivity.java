@@ -13,6 +13,7 @@ import com.hpl.my_music.activity.BaseViewModelActivity;
 import com.hpl.my_music.component.api.DefaultService;
 import com.hpl.my_music.component.api.NetworkModule;
 import com.hpl.my_music.component.guide.adapter.GuideAdapter;
+import com.hpl.my_music.component.observer.ObserverAdapter;
 import com.hpl.my_music.component.sheet.model.Sheet;
 import com.hpl.my_music.component.sheet.model.SheetWrapper;
 import com.hpl.my_music.config.Config;
@@ -136,28 +137,37 @@ public class GuideActivity extends BaseViewModelActivity<ActivityGuideBinding>im
 
     private void testRetrofitGet() {
 
+//        service.sheetDetail("ixuea", "1")
+//                .subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(new Observer<DetailResponse<Sheet>>() {
+//                    @Override
+//                    public void onSubscribe(@io.reactivex.rxjava3.annotations.NonNull Disposable d) {
+//
+//                    }
+//
+//                    @Override
+//                    public void onNext(@io.reactivex.rxjava3.annotations.NonNull DetailResponse<Sheet> data) {
+//                        Log.d(TAG, "onNext: " + data.getData().getTitle());
+//                    }
+//
+//                    @Override
+//                    public void onError(@io.reactivex.rxjava3.annotations.NonNull Throwable e) {
+//                        Log.e(TAG, "onError: " + e.getLocalizedMessage());
+//                    }
+//
+//                    @Override
+//                    public void onComplete() {
+//
+//                    }
+//                });
         service.sheetDetail("ixuea", "1")
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<DetailResponse<Sheet>>() {
+                .subscribe(new ObserverAdapter<DetailResponse<Sheet>>() {
                     @Override
-                    public void onSubscribe(@io.reactivex.rxjava3.annotations.NonNull Disposable d) {
-
-                    }
-
-                    @Override
-                    public void onNext(@io.reactivex.rxjava3.annotations.NonNull DetailResponse<Sheet> data) {
-                        Log.d(TAG, "onNext: " + data.getData().getTitle());
-                    }
-
-                    @Override
-                    public void onError(@io.reactivex.rxjava3.annotations.NonNull Throwable e) {
-                        Log.e(TAG, "onError: " + e.getLocalizedMessage());
-                    }
-
-                    @Override
-                    public void onComplete() {
-
+                    public void onNext(DetailResponse<Sheet> sheetDetailResponse) {
+                        super.onNext(sheetDetailResponse);
                     }
                 });
     }
