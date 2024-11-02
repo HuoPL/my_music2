@@ -34,4 +34,7 @@ public class AppContext extends Application {
         String rootDir = MMKV.initialize(this);
         Log.d(TAG, "initMMKV: " + rootDir);
     }
+    public void logout() {
+
+    }
 }

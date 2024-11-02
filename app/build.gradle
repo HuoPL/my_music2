@@ -148,4 +148,10 @@ dependencies {
     implementation 'io.reactivex.rxjava3:rxandroid:3.0.0'
 //endregion
 
+
+    //apache common lang3工具包
+    //提供了StringUtils等这样的类
+    //http://commons.apache.org/proper/commons-lang/
+    implementation 'org.apache.commons:commons-lang3:+'
+
 }

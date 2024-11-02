@@ -12,6 +12,7 @@ import com.hpl.my_music.MainActivity;
 import com.hpl.my_music.R;
 import com.hpl.my_music.activity.BaseViewModelActivity;
 import com.hpl.my_music.component.api.DefaultService;
+import com.hpl.my_music.component.api.HttpObserver;
 import com.hpl.my_music.component.api.NetworkModule;
 import com.hpl.my_music.component.guide.adapter.GuideAdapter;
 import com.hpl.my_music.component.observer.ObserverAdapter;
@@ -180,14 +181,29 @@ public class GuideActivity extends BaseViewModelActivity<ActivityGuideBinding>im
 //        SuperRoundLoadingDialogFragment dialogFragment = SuperRoundLoadingDialogFragment.newInstance("拼命加载中.");
 //        dialogFragment.show(getSupportFragmentManager(),"SuperRoundLoadingDialogFragment");
 
-        showLoading("拼命加载中.");
+//        showLoading("拼命加载中.");
+//
+//        binding.indicator.postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                hideLoading();
+//            }
+//        },3000);
+        service.sheetDetail("ixuea", "88888")
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new HttpObserver<DetailResponse<Sheet>>() {
+                    @Override
+                    public void onSucceeded(DetailResponse<Sheet> data) {
+                        Log.d(TAG, "onSucceeded: " + data.getData().getTitle());
+                    }
 
-        binding.indicator.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                hideLoading();
-            }
-        },3000);
+                    @Override
+                    public boolean onFailed(DetailResponse<Sheet> data, Throwable e) {
+                        Log.e(TAG, "onFailed: " + e.getLocalizedMessage());
+                        return false;
+                    }
+                });
     }
 
     /**

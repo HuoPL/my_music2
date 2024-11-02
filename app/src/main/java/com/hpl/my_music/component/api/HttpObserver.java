@@ -2,6 +2,7 @@ package com.hpl.my_music.component.api;
 
 import com.hpl.my_music.component.observer.ObserverAdapter;
 import com.hpl.my_music.model.response.BaseResponse;
+import com.hpl.my_music.util.ExceptionHandlerUtil;
 import com.hpl.my_music.util.HttpUtil;
 
 import okhttp3.Response;
@@ -74,7 +75,7 @@ public abstract class HttpObserver<T> extends ObserverAdapter<T> {
             //返回true就表示外部手动处理错误
             //那我们框架内部就不用做任何事情了
         } else {
-            HttpUtil.handlerRequest(data, error);
+            ExceptionHandlerUtil.handlerRequest(data, error);
         }
     }
 
