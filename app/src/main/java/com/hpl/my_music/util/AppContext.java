@@ -3,6 +3,7 @@ package com.hpl.my_music.util;
 import android.app.Application;
 import android.util.Log;
 
+import com.hpl.superui.toast.SuperToast;
 import com.tencent.mmkv.MMKV;
 
 /**
@@ -21,6 +22,9 @@ public class AppContext extends Application {
         super.onCreate();
         instance = this;
         initMMKV();
+
+        //初始化toast工具类，也是全局只需要初始化一次
+        SuperToast.init(getApplicationContext());
     }
 
     /**

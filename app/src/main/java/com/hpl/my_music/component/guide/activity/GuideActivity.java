@@ -3,6 +3,7 @@ package com.hpl.my_music.component.guide.activity;
 import android.content.Intent;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 
 import androidx.annotation.NonNull;
@@ -22,6 +23,7 @@ import com.hpl.my_music.model.response.DetailResponse;
 import com.hpl.my_music.model.response.ListResponse;
 import com.hpl.my_music.util.Constant;
 import com.hpl.my_music.util.PreferenceUtil;
+import com.hpl.superui.toast.SuperToast;
 import com.qmuiteam.qmui.util.QMUIStatusBarHelper;
 
 import java.io.IOException;
@@ -161,15 +163,19 @@ public class GuideActivity extends BaseViewModelActivity<ActivityGuideBinding>im
 //
 //                    }
 //                });
-        service.sheetDetail("ixuea", "1")
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new ObserverAdapter<DetailResponse<Sheet>>() {
-                    @Override
-                    public void onNext(DetailResponse<Sheet> sheetDetailResponse) {
-                        super.onNext(sheetDetailResponse);
-                    }
-                });
+
+//        service.sheetDetail("ixuea", "1")
+//                .subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(new ObserverAdapter<DetailResponse<Sheet>>() {
+//                    @Override
+//                    public void onNext(DetailResponse<Sheet> sheetDetailResponse) {
+//                        super.onNext(sheetDetailResponse);
+//                    }
+//                });
+//        Toast.makeText(getHostActivity(), R.string.about_ta, Toast.LENGTH_SHORT).show();
+        //这其实就是一个弹出的小提示
+        SuperToast.error("加载中");
     }
 
     /**
