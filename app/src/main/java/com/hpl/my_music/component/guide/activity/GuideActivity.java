@@ -23,6 +23,7 @@ import com.hpl.my_music.model.response.DetailResponse;
 import com.hpl.my_music.model.response.ListResponse;
 import com.hpl.my_music.util.Constant;
 import com.hpl.my_music.util.PreferenceUtil;
+import com.hpl.superui.loading.SuperRoundLoadingDialogFragment;
 import com.hpl.superui.toast.SuperToast;
 import com.qmuiteam.qmui.util.QMUIStatusBarHelper;
 
@@ -175,7 +176,18 @@ public class GuideActivity extends BaseViewModelActivity<ActivityGuideBinding>im
 //                });
 //        Toast.makeText(getHostActivity(), R.string.about_ta, Toast.LENGTH_SHORT).show();
         //这其实就是一个弹出的小提示
-        SuperToast.error("加载中");
+//        SuperToast.error("加载中");
+//        SuperRoundLoadingDialogFragment dialogFragment = SuperRoundLoadingDialogFragment.newInstance("拼命加载中.");
+//        dialogFragment.show(getSupportFragmentManager(),"SuperRoundLoadingDialogFragment");
+
+        showLoading("拼命加载中.");
+
+        binding.indicator.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                hideLoading();
+            }
+        },3000);
     }
 
     /**
